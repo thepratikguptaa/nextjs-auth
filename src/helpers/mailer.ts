@@ -1,28 +1,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import User from "@/models/userModel";
 import nodemailer from "nodemailer";
+import bcryptjs from 'bcryptjs'
 
 export const sendEmail = async({email, emailType, userId}:any) => {
     try {
-        //TODO: configure mail for usage
+        const hashedToken = await bcryptjs.hash(userId.toString(), 10)
+        if (emailType === "VERIFY") {
+            await User.findByIdAndUpdate(userId,
+                {verifyToken: hashedToken, verifyTokenExpiry: Date.now() + 3600000})
+        } else if(emailType === "RESET") {
+            await User.findByIdAndUpdate(userId,
+                {forgotPasswordToken: hashedToken, forgotPasswordTokenExpiry: Date.now() + 3600000})
+        }
 
-        const transporter = nodemailer.createTransport({
-            host: "smtp.example.com",
-            port: 587,
-            secure: false, // upgrade later with STARTTLS
+        // Looking to send emails in production? Check out our Email API/SMTP product!
+        const transport = nodemailer.createTransport({
+            host: "sandbox.smtp.mailtrap.io",
+            port: 2525,
             auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASS,
-            },
-});
+                user: "002ed835f29808", //
+                pass: "c9ebd93827be04" // 
+            }
+        });
 
     const mailOptions = {
         from: 'pratik@pratikgupta.com', // sender address
         to: email, // list of receivers
         subject: emailType === 'VERIFY' ? "Verify your email" : "Reset your password", // Subject line
-        html: "<b>Hello world?</b>",
+        html: `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">here</a> to ${emailType === "VERIFY" ? "verify your email" : "reset your password"}
+        or copy and paste the link below in your browser.
+        <br> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
+        </p>`,
     }
 
-    const mailResponse = await transporter.sendMail(mailOptions);
+    const mailResponse = await transport.sendMail(mailOptions);
     return mailResponse;
 
 
