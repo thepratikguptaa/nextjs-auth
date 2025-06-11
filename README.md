@@ -1,2 +1,2 @@
 # nextjs-auth
-Learning authentication in NextJS.
+Learning authentication in NextJS
