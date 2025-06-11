@@ -3,15 +3,16 @@ import nodemailer from "nodemailer";
 
 export const sendEmail = async({email, emailType, userId}:any) => {
     try {
-        // Create a transporter for SMTP
+        //TODO: configure mail for usage
+
         const transporter = nodemailer.createTransport({
-        host: "smtp.example.com",
-        port: 587,
-        secure: false, // upgrade later with STARTTLS
-        auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
-        },
+            host: "smtp.example.com",
+            port: 587,
+            secure: false, // upgrade later with STARTTLS
+            auth: {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS,
+            },
 });
 
     const mailOptions = {
