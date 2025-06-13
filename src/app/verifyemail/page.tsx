@@ -5,9 +5,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export default function VerifyEmailPage() {
-    const router = useRouter()
+    // const router = useRouter()
     const [token, setToken] = useState('')
     const [verified, setverified] = useState(false)
     const [error, setError] = useState(false)
@@ -39,6 +40,15 @@ export default function VerifyEmailPage() {
     }, [token])
 
     return (
-    <div>page</div>
+    <div className='flex flex-col items-center justify center min-h-screen py-2'>
+        <h1 className='text-4xl m-6 font-extrabold'>Verify Email</h1>
+        <h2 className='p-2 bg-blue-400 text-black'>{token ? `${token}`: "no token"}</h2>
+        {verified && (
+            <><div><h2 className='text-1xl m-4 font-extralight'>Email verified successfully</h2></div><div className='p-3 items-center justify-center'><Link
+                    className='text-2xl font-bold p-3 bg-gradient-to-r from-blue-500 via-blue-300 to-blue-100 bg-clip-text text-transparent'
+                    href={"/login"}>Login</Link></div></>
+            
+        )}
+    </div>
     )
 }
