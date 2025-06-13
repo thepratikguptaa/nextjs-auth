@@ -40,7 +40,7 @@ export default function SignupPage() {
 
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
-      <h1 className='text-4xl mb-2 p-3 bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent'>{loading ? "Processing" : "Signup"}</h1>
+      <h1 className='text-4xl mb-2 p-3 bg-gradient-to-r from-blue-500 via-blue-300 to-blue-100 bg-clip-text text-transparent'>{loading ? "Processing" : "Signup"}</h1>
       <hr />
       <label htmlFor="username">Username</label>
       <input
@@ -78,7 +78,7 @@ export default function SignupPage() {
         {buttonDisabled ? "Please enter all credentials" : "Signup"}
       </button>
       <Link 
-      className='text-2xl mb-2 p-3 bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent'
+      className='text-2xl p-3 bg-gradient-to-r from-blue-500 via-blue-300 to-blue-100 bg-clip-text text-transparent border-2 border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600'
       href={"/login"}>Login</Link>
     </div>
   )
