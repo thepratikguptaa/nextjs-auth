@@ -35,22 +35,22 @@ export default function ProfilePage() {
     }
   }
   return (
-    <div className='text-3xl items-center justify-center bg-gradient-to-r from-blue-500 via-blue-300 to-blue-100 bg-clip-text text-transparent m-60'>
-      <h1 className='text-center'>
-        <hr />
-        <h2>{data === "Nothing to show here" ? "Nothing to show here" : <Link href={`/profile/$ your data{data}`}>{data}</Link>}</h2>
-        <hr />
-        <button
-        className="text-2xl p-3 m-6 text-green-500 bg-clip-text border-2 cursor-pointer border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        onClick={getUserDetails}
-        >Get user details</button>
-        <hr />
-        <button
-        className="text-2xl p-3 mt-6 text-red-500 bg-clip-text border-2 cursor-pointer border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-        onClick={logout}
-        >Logout</button>
+    <div className='text-3xl items-center justify-center text-white m-60'>
+        <h2 className='p-3 text-white text-center'>{data === "Nothing to show here" ? "Nothing to show here" : <Link href={`/profile/${data}`}>Your profile link is: {data}</Link>}</h2>
+        <div className='flex flex-col items-center justify-center'>
+          <button
+          className="text-2xl p-3 m-6 text-green-500 bg-clip-text border-2 cursor-pointer border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+          onClick={getUserDetails}
+          >Get user details
+          </button>
+        </div>
+        <div className='flex flex-col items-center justify-center'>
+          <button
+          className="text-2xl p-3 mt-6 text-red-500 bg-clip-text border-2 cursor-pointer border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+          onClick={logout}
+          >Logout</button>
+        </div>
 
-      </h1>
     </div>
   )
 }
