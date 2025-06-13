@@ -76,8 +76,10 @@ export default function SignupPage() {
         className='text-xs p-1 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-white bg-gray-600 hover:bg-gray-700'
         >
         {buttonDisabled ? "Please enter all credentials" : "Signup"}
-        <Link href={"/login"}>Visit Login page</Link>
       </button>
+      <Link 
+      className='text-2xl mb-2 p-3 bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent'
+      href={"/login"}>Login</Link>
     </div>
   )
 }
